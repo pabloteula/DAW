@@ -1,0 +1,425 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.encabezado {
+    width: 100%;
+    height: 90px;
+    line-height: 5;    
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+}
+
+.logo {
+    background-image: url(img/logo.png);
+    background-size: cover;
+    width: 200px;
+    height: 90px;
+    overflow: visible;
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+}
+
+.menu {
+    cursor: pointer;
+    font-size: large;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.social-icons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.caja1 {
+    width: 1000px;
+    height: 350px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.644)), url(img/mujer.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+p {
+    margin: 20px;
+}
+
+.p1 {
+    font-size: 3rem;
+    color: white;
+    margin-top: 100px;
+}
+
+.caja-container {
+    display: flex;
+    justify-content: center;
+    width: 900px;
+    margin: auto;
+    margin-top: 80px;
+}
+
+.caja5 {
+    width: 30%;
+    height: 400px;
+    background-color: rgb(244, 244, 244);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 25px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 80px;
+}
+
+.info1 {
+    font-size: large;
+    text-align: left;
+    width: 100%;
+    padding-left: 50px;
+    width: 98%;
+}
+
+.info2 {
+    font-size: large;
+    text-align: left;
+    width: 100%;
+    padding-left: 50px;
+    margin-bottom: 10px;
+}
+
+.precio1 {
+    font-size: x-large;
+    color: white;
+    background-color: rgb(255, 174, 0);
+    width: 220px;
+    height: 60px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.precio2 {
+    font-size: x-large;
+    color: white;
+    background-color: rgb(30, 64, 255);
+    width: 220px;
+    height: 60px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.info3 {
+    font-size: small;
+    width: 90%;
+    margin-bottom: 20px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.interesa1 {
+    font-size: large;
+    border: 1px solid rgba(0, 0, 0, 0.444);
+    width: 150px;
+    height: 40px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.interesa2 {
+    font-size: large;
+    border: 1px solid rgba(0, 0, 0, 0.444);
+    width: 150px;
+    height: 40px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(30, 64, 255);
+    color: white;
+    cursor: pointer;
+}
+
+.info4 {
+    color: rgb(30, 64, 255);
+    font-size: large;
+    text-align: left;
+    width: 100%;
+    padding-left: 50px;
+    width: 98%;
+
+}
+
+.info6 {
+    color: rgb(30, 64, 255);
+    font-size: large;
+    text-align: left;
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 200px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+
+.p8 {
+    font-size: 2rem;
+    color: white;
+    width: 80%;
+}
+
+.p9 {
+    font-size: large;
+    color: white;
+    width: 80%;
+}
+
+.movilesparalelos {
+    width: 70%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.imagen1, .imagen2 {
+    width: 95%;
+    height: auto;
+}
+
+.boton3 {
+    background-color: rgb(30, 64, 255);
+    color: white;
+    width: 200px;
+    height: 70px;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 70px;
+    cursor: pointer;
+    font-size: medium;  
+    margin-top: 30px;
+}
+
+.caja10 {
+    width: 1000px;
+    height: 500px;
+    background-color: rgb(234, 233, 233);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.info5 {
+    width: 50%;
+    height: 400px;
+    background-image: url('img/movilrojo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.p12 {
+    font-size: 1.5rem;
+}
+
+.p13 {
+    width: 90%;
+    text-align: center;
+    margin: auto;
+}
+
+.i1 {
+    width: 100%;
+    height: auto;
+    margin-top: -15px;
+}
+
+.i2 {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.formulario {
+    width: 30%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgb(38, 0, 255);
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.form-group-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.form-group-row .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-group button {
+    padding: 10px 15px;
+    background-color: rgb(255, 174, 0);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #fd9400;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.caja11 {
+    width: 100%;
+    height: 200px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.riqueza1 {
+    width: 240px;
+    height: auto;
+    margin-left: 10px;
+}
+
+.p14 {
+    color: rgb(255, 174, 0);
+    font-size: x-small;
+    margin-top: 0px;
+    margin-left: 15px;
+}
+
+.p15 {
+    color: rgb(255, 174, 0);
+    font-size: small;
+    margin-top: 0px;
+    margin-left: 3px;
+    margin-bottom: 20px;
+}
+
+.p16 {
+    color: white;
+    font-size: small;
+    margin-top: 0px;
+    margin-left: 3px;
+    cursor: pointer;
+}
+
+.info6, .info7, .info8, .info9 {
+    width: 25%;
+    height: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    background-color: black;
+    color: white;
+    margin-top: 3px;
+}
+
+.final {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
