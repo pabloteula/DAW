@@ -1,15 +1,10 @@
-async function fetchImages(folder) {
+async function fetchImages() {
     try {
-        const response = await fetch(`img/${folder}/`);
-        const text = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, 'text/html');
-        const images = Array.from(doc.querySelectorAll('a'))
-            .map(link => link.href)
-            .filter(href => href.match(/\.(jpe?g|png|gif|webp)$/i));
-        return images;
+        const response = await fetch('php/fetch_games.php');
+        const images = await response.json();
+        return images.filter(image => image.imagen_url.includes('img/games/') && !image.imagen_url.includes('gamesp'));
     } catch (error) {
-        console.error(`Error fetching images from ${folder}:`, error);
+        console.error('Error fetching images:', error);
         return [];
     }
 }
@@ -33,13 +28,13 @@ function createImageCards(images) {
 
             const img = document.createElement('img');
             img.classList.add('imagen');
-            img.src = image;
-            img.alt = 'Tarjeta';
+            img.src = image.imagen_url;
+            img.alt = image.titulo;
 
             const addButton = document.createElement('button');
             addButton.classList.add('add-button');
             addButton.textContent = '+';
-            addButton.onclick = () => addToCollection(image);
+            addButton.onclick = () => addToCollection(image.imagen_url);
 
             tarjeta.appendChild(img);
             tarjeta.appendChild(addButton);
@@ -58,15 +53,70 @@ function addToCollection(image) {
 }
 
 async function updateImages() {
-    const gamesImages = await fetchImages('games');
-    const gamespImages = await fetchImages('gamesp');
-    if (gamesImages.length === 0 || gamespImages.length === 0) return;
+    const images = await fetchImages();
+    if (images.length === 0) return;
 
     const caja2 = document.querySelector('.caja2');
-    const randomImages = getRandomImages([...gamesImages, ...gamespImages]);
+    const randomImages = getRandomImages(images);
     const imageCards = createImageCards(randomImages);
 
     caja2.appendChild(imageCards);
 }
 
-document.addEventListener('DOMContentLoaded', updateImages);
+async function fetchUsername() {
+    try {
+        const response = await fetch('php/fetch_username.php');
+        const data = await response.json();
+        return data.username;
+    } catch (error) {
+        console.error('Error fetching username:', error);
+        return 'Usuario';
+    }
+}
+
+function enlargeImage(event) {
+    const img = event.target;
+    const overlay = document.createElement('div');
+    overlay.id = 'overlay';
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    overlay.style.display = 'flex';
+    overlay.style.flexDirection = 'column';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+    overlay.style.zIndex = '1000';
+
+    const clonedImg = img.cloneNode();
+    clonedImg.style.maxWidth = '30%';
+    clonedImg.style.maxHeight = '80%';
+    clonedImg.style.borderRadius = '10px';
+
+    const title = document.createElement('div');
+    title.style.color = 'white';
+    title.style.marginTop = '10px';
+    title.textContent = img.alt;
+
+    overlay.appendChild(clonedImg);
+    overlay.appendChild(title);
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener('click', () => {
+        document.body.removeChild(overlay);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await updateImages();
+    const username = await fetchUsername();
+    const usernameElement = document.createElement('div');
+    usernameElement.className = 'username';
+    usernameElement.textContent = username;
+    document.querySelector('.cerrarsesion').insertAdjacentElement('beforebegin', usernameElement);
+    document.querySelectorAll('.tarjeta .imagen').forEach(img => {
+        img.addEventListener('click', enlargeImage);
+    });
+});

@@ -1,48 +1,42 @@
 <?php
 session_start();
-include 'db_connection.php'; // Include your database connection file
+include 'dbplayforge.php'; // Incluir el archivo de conexión a la base de datos
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Default username and password for testing
-    $default_username = 'pabloteula';
-    $default_password = '1234';
+    // Obtener la conexión a la base de datos
+    $database = new Database();
+    $conn = $database->getConnection();
 
-    if ($username === $default_username && $password === $default_password) {
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $username;
-        $_SESSION['id'] = 1; // Default ID for testing
-        header('Location: home.html'); // Redirect to home page
-    } else {
-        // Create a prepared statement
-        if ($stmt = $conn->prepare('SELECT id, password FROM users WHERE username = ?')) {
-            $stmt->bind_param('s', $username);
-            $stmt->execute();
-            $stmt->store_result();
+    // Crear una declaración preparada
+    $query = 'SELECT id_usuario, contraseña FROM Usuarios WHERE nombre_usuario = :username';
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':username', $username);
+    $stmt->execute();
 
-            // Check if the username exists
-            if ($stmt->num_rows > 0) {
-                $stmt->bind_result($id, $hashed_password);
-                $stmt->fetch();
+    // Verificar si el nombre de usuario existe
+    if ($stmt->rowCount() > 0) {
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $id_usuario = $user['id_usuario'];
+        $hashed_password = $user['contraseña'];
 
-                // Verify the password
-                if (password_verify($password, $hashed_password)) {
-                    // Password is correct, start a session
-                    $_SESSION['loggedin'] = true;
-                    $_SESSION['username'] = $username;
-                    $_SESSION['id'] = $id;
-                    header('Location: home.html'); // Redirect to home page
-                } else {
-                    echo 'Incorrect password!';
-                }
-            } else {
-                echo 'Incorrect username!';
-            }
-            $stmt->close();
+        // Verificar la contraseña
+        if (password_verify($password, $hashed_password)) {
+            // La contraseña es correcta, iniciar sesión
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $username;
+            $_SESSION['id'] = $id_usuario;
+            header('Location: ../home.html'); // Redirigir a la página de inicio
+            exit();
+        } else {
+            echo "<script>alert('¡Contraseña incorrecta!'); window.history.back();</script>";
         }
+    } else {
+        echo "<script>alert('¡Nombre de usuario incorrecto!'); window.history.back();</script>";
     }
+
+    $conn = null; // Cerrar la conexión
 }
-$conn->close();
 ?>

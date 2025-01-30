@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Juego</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" href="img/PlayForgeLogosinfondo.png" type="image/png">
+</head>
+<body>
+<div class="caja1">
+    <video autoplay muted loop id="bg-video">
+        <source src="videos/purple.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <form action="php/add_game.php" method="post" enctype="multipart/form-data" class="add-game-form">
+        <p class="p1">Añadir Juego</p>
+        <input type="text" id="titulo" name="titulo" placeholder="Título del Juego" required>
+        <input type="text" id="plataforma" name="plataforma" placeholder="Plataforma" required>
+        <input type="file" id="imagen" name="imagen" accept="image/*" required>
+        <input type="hidden" name="ruta" value="games">
+        <button type="submit">Añadir</button>
+    </form>
+    <form action="php/add_game.php" method="post" enctype="multipart/form-data" class="add-game-form">
+        <p class="p1">Añadir Juego (proximamente)</p>
+        <input type="text" id="titulo" name="titulo" placeholder="Título del Juego" required>
+        <input type="text" id="plataforma" name="plataforma" placeholder="Plataforma" required>
+        <input type="file" id="imagen" name="imagen" accept="image/*" required>
+        <input type="hidden" name="ruta" value="gamesp">
+        <button type="submit">Añadir</button>
+    </form>
+</div>
+<footer>
+    <div class="footer-content">
+        <p class="final">Copyright &copy; 2025 | PlayForge. Todos los derechos reservados.</p>
+    </div>
+</footer>
+</body>
+</html>
