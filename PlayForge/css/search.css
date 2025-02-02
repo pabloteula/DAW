@@ -1,0 +1,230 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(32, 32, 32);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.encabezado {
+    width: 100%;
+    height: 100px;
+    line-height: 5;    
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    background-color: #1a1a1a;
+    color: rgb(206, 202, 218);
+    z-index: 1000;
+    box-shadow: 0 2px 4px #9BA4D1;
+    justify-content: center;
+}
+
+.logo {
+    background-image: url(../img/PlayForgeLogosinfondo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 110px;
+    height: 95px;
+    overflow: visible;
+    position: absolute;
+    left: 0;
+    margin-left: 10px;
+}
+
+.menu {
+    cursor: pointer;
+    font-size: large;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cerrarsesion {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    position: absolute;
+    right: 0;
+    margin-right: 30px;
+    margin-top: 10px;
+}
+
+.username {
+    position: absolute;
+    right: 0;
+    margin-right: 60px;
+    margin-top: -10px;
+    color: rgb(206, 202, 218);
+    font-size: medium;
+    font-weight: bold;
+}
+
+.buscar {
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.barrab {
+    width: 800px;
+    height: 55px;
+    background-color: #1a1a1a;
+    border: none;
+    color: white;
+    font-size: large;
+}
+
+.barrab:-webkit-autofill {
+    background-color: #1a1a1a !important;
+    color: white !important;
+    -webkit-box-shadow: 0 0 0px 1000px #1a1a1a inset !important;
+    box-shadow: 0 0 0px 1000px #1a1a1a inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+.botonbusqueda {
+    background: none;
+    border: none;
+}
+
+.caja2 {
+    width: 1100px;
+    height: 500px;
+    background-color: none;
+    color: #9BA4D1;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    margin-top: 60px;
+    flex: 1;
+}
+
+.tarjetas {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 98%;
+    margin: 0 auto;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tarjeta {
+    width: 300px;
+    height: 380px;
+    background-color: #9BA4D1;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    position: relative;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+    transition: 1s;
+}
+
+.imagen {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.add-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #1a1a1a;
+    color: #9BA4D1;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Pie de página */
+
+.caja-footer {
+    width: 100%;
+    height: 200px;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 100px;
+    box-shadow: 0 -2px 4px #9ba4d1;
+}
+
+.playforge {
+    width: 240px;
+    height: auto;
+    margin-left: 10px;
+}
+
+.p15 {
+    color: #9BA4D1;
+    font-size: small;
+    margin-top: 0px;
+    margin-left: 3px;
+    margin-bottom: 20px;
+}
+
+.p16 {
+    color: white;
+    font-size: small;
+    margin-top: 0px;
+    margin-left: 3px;
+    cursor: pointer;
+}
+
+.logo-final, .info7, .info8, .info9 {
+    width: 25%;
+    height: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    background-color: black;
+    color: white;
+    margin-top: 3px;
+}
+
+.final {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
