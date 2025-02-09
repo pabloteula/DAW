@@ -1,3 +1,4 @@
+// Función para obtener el nombre de usuario desde el servidor
 async function fetchUsername() {
     try {
         const response = await fetch('php/fetch_username.php');
@@ -9,6 +10,7 @@ async function fetchUsername() {
     }
 }
 
+// Evento que se ejecuta cuando el DOM ha sido cargado
 document.addEventListener('DOMContentLoaded', async () => {
     const username = await fetchUsername();
     const usernameElement = document.createElement('div');

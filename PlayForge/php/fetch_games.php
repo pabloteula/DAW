@@ -6,7 +6,7 @@ $database = new Database();
 $conn = $database->getConnection();
 
 // Consultar los videojuegos
-$query = "SELECT titulo, plataforma, imagen_url FROM videojuegos";
+$query = "SELECT titulo, plataforma, año_lanzamiento, desarrollador, imagen_url FROM videojuegos";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 

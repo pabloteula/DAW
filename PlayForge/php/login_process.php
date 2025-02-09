@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $database = new Database();
     $conn = $database->getConnection();
 
+    // Verificar si el nombre de usuario o el correo ya están en uso
     $query = "SELECT * FROM Usuarios WHERE nombre_usuario = ? OR email = ?";
     $stmt = $conn->prepare($query);
     $stmt->bindParam(1, $username);
@@ -19,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->rowCount() > 0) {
         echo "<script>alert('El nombre de usuario o el correo ya están en uso.'); window.history.back();</script>";
     } else {
+        // Insertar el nuevo usuario en la base de datos
         $query = "INSERT INTO Usuarios (nombre_usuario, email, contraseña, fecha_creacion) VALUES (?, ?, ?, NOW())";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(1, $username);

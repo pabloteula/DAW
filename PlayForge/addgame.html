@@ -6,6 +6,13 @@
         <title>Añadir Juego</title>
         <link rel="stylesheet" href="css/login.css">
         <link rel="icon" href="img/PlayForgeLogosinfondo.png" type="image/png">
+        <style>
+            .add-game-form {
+                background-color: rgba(0, 0, 0, 0.4);
+                padding: 20px;
+                border-radius: 10px;
+            }
+        </style>
     </head>
     <body>
         <div class="caja1">
@@ -17,6 +24,8 @@
                 <p class="p1">Añadir Juego</p>
                 <input type="text" id="titulo" name="titulo" placeholder="Título del Juego" required>
                 <input type="text" id="plataforma" name="plataforma" placeholder="Plataforma" required>
+                <input type="number" id="año_lanzamiento" name="año_lanzamiento" placeholder="Año de Lanzamiento" required>
+                <input type="text" id="desarrollador" name="desarrollador" placeholder="Desarrollador" required>
                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
                 <input type="hidden" name="ruta" value="games">
                 <button type="submit">Añadir</button>
@@ -25,6 +34,8 @@
                 <p class="p1">Añadir Juego (proximamente)</p>
                 <input type="text" id="titulo" name="titulo" placeholder="Título del Juego" required>
                 <input type="text" id="plataforma" name="plataforma" placeholder="Plataforma" required>
+                <input type="number" id="año_lanzamiento" name="año_lanzamiento" placeholder="Año de Lanzamiento" required>
+                <input type="text" id="desarrollador" name="desarrollador" placeholder="Desarrollador" required>
                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
                 <input type="hidden" name="ruta" value="gamesp">
                 <button type="submit">Añadir</button>

@@ -1,7 +1,9 @@
+// Función para obtener las imágenes desde el servidor
 async function fetchImages() {
     try {
         const response = await fetch('php/fetch_games.php');
         const images = await response.json();
+        // Filtrar imágenes que contienen 'img/games/' o 'img/gamesp/'
         return images.filter(image => image.imagen_url.includes('img/games/') || image.imagen_url.includes('img/gamesp/'));
     } catch (error) {
         console.error('Error fetching images:', error);
@@ -9,11 +11,12 @@ async function fetchImages() {
     }
 }
 
+// Función para obtener imágenes aleatorias
 function getRandomImages(images) {
-    const shuffled = images.sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, 20);
+    return images.sort(() => 0.5 - Math.random());
 }
 
+// Función para crear tarjetas de imágenes
 function createImageCards(images) {
     const container = document.createDocumentFragment();
 
@@ -31,6 +34,8 @@ function createImageCards(images) {
             img.src = image.imagen_url;
             img.alt = image.titulo;
             img.dataset.platform = image.plataforma;
+            img.dataset.year = image.año_lanzamiento;
+            img.dataset.developer = image.desarrollador;
 
             const addButton = document.createElement('button');
             addButton.classList.add('add-button');
@@ -48,11 +53,55 @@ function createImageCards(images) {
     return container;
 }
 
-function addToCollection(image) {
-    console.log(`Image added to collection: ${image}`);
-    // Aquí puedes añadir la lógica para añadir la imagen a una colección
+// Función para obtener las colecciones desde el servidor
+async function fetchCollections() {
+    try {
+        const response = await fetch('php/fetch_collections.php');
+        const collections = await response.json();
+        return collections;
+    } catch (error) {
+        console.error('Error fetching collections:', error);
+        return [];
+    }
 }
 
+// Función para añadir una imagen a una colección
+async function addToCollection(imageUrl) {
+    const collections = await fetchCollections();
+    if (collections.length === 0) {
+        alert('No collections available. Please create a collection first.');
+        return;
+    }
+
+    const collectionOptions = collections.map((collection, index) => `${index + 1}. ${collection.nombre_coleccion}`).join('\n');
+    const collectionIndex = prompt(`Select a collection to add the game to:\n${collectionOptions}`);
+    const selectedCollection = collections[parseInt(collectionIndex) - 1];
+
+    if (!selectedCollection) {
+        alert('Invalid collection selected.');
+        return;
+    }
+
+    try {
+        const response = await fetch('php/add_game_to_collection.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ collectionId: selectedCollection.id_coleccion, imageUrl })
+        });
+        const result = await response.json();
+        if (result.success) {
+            alert('Game added to collection successfully.');
+        } else {
+            alert('Error adding game to collection: ' + result.message);
+        }
+    } catch (error) {
+        console.error('Error adding game to collection:', error);
+    }
+}
+
+// Función para actualizar las imágenes en la página
 async function updateImages() {
     const images = await fetchImages();
     if (images.length === 0) return;
@@ -65,6 +114,7 @@ async function updateImages() {
     attachImageClickListeners();
 }
 
+// Función para obtener el nombre de usuario desde el servidor
 async function fetchUsername() {
     try {
         const response = await fetch('php/fetch_username.php');
@@ -76,6 +126,7 @@ async function fetchUsername() {
     }
 }
 
+// Función para agrandar la imagen al hacer clic
 function enlargeImage(event) {
     const img = event.target;
     const overlay = document.createElement('div');
@@ -109,8 +160,16 @@ function enlargeImage(event) {
     const platform = document.createElement('div');
     platform.textContent = (img.dataset.platform || 'Desconocida');
 
+    const year = document.createElement('div');
+    year.textContent = img.dataset.year || 'Desconocido';
+
+    const developer = document.createElement('div');
+    developer.textContent = img.dataset.developer || 'Desconocido';
+
     infoContainer.appendChild(title);
     infoContainer.appendChild(platform);
+    infoContainer.appendChild(year);
+    infoContainer.appendChild(developer);
 
     overlay.appendChild(clonedImg);
     overlay.appendChild(infoContainer);
@@ -121,12 +180,14 @@ function enlargeImage(event) {
     });
 }
 
+// Función para añadir eventos de clic a las imágenes
 function attachImageClickListeners() {
     document.querySelectorAll('.tarjeta .imagen').forEach(img => {
         img.addEventListener('click', enlargeImage);
     });
 }
 
+// Función para buscar juegos según una consulta
 async function searchGames(query) {
     try {
         const response = await fetch(`php/search_games.php?query=${encodeURIComponent(query)}`);
@@ -142,6 +203,7 @@ async function searchGames(query) {
     }
 }
 
+// Evento que se ejecuta cuando el DOM ha sido cargado
 document.addEventListener('DOMContentLoaded', async () => {
     await updateImages();
     const username = await fetchUsername();
